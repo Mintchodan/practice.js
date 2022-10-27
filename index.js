@@ -2,6 +2,8 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const { User } = require("./models/User");
 
+const config = require("./config/key");
+
 const app = express()
 const port = 5000
 
@@ -14,11 +16,10 @@ app.use(bodyParser.json());
 
 
 const mongoose = require("mongoose")
-mongoose.connect('mongodb+srv://admin:qwer@cluster0.pvii6vx.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err))
-
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
