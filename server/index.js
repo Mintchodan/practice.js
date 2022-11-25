@@ -27,6 +27,10 @@ mongoose
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
+app.get("/api/hello", (req, res) => {
+  res.send("hello response");
+});
+
 app.post("/api/users/register", (req, res) => {
   // 회원 가입 할때 필요한 정보들을 client에서 가져오면
   // 그것들을 데이터 베이스에 넣어준다.
@@ -97,4 +101,4 @@ app.get("/api/users/logout", auth, (req, res) => {
   });
 });
 
-app.listen(port, () => console.log("Example app listening on port ${port}!"));
+app.listen(port, () => console.log("Example app listening on port : " + port));
