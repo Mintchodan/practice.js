@@ -86,4 +86,15 @@ app.get("/api/users/auth", auth, (req, res) => {
   });
 });
 
+// 로그아웃 기능
+app.get("/api/users/logout", auth, (req, res) => {
+  // auth 미들웨어에서 아이디를 가져와 찾은 다음 해당 토큰 ""로 업데이트
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true,
+    });
+  });
+});
+
 app.listen(port, () => console.log("Example app listening on port ${port}!"));
